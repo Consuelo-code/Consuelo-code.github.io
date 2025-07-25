@@ -3,393 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Interactivo | Maria del Consuelo Castañeda Lopez</title>
+    <title>CV | Maria del Consuelo Castañeda Lopez</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Harmony -->
-    <!-- Application Structure Plan: The SPA uses a top navigation bar for quick access to thematic sections (Home, Competencies, Experience, Skills, Training, Contributions). This structure is chosen over a chronological format to allow a busy user (like a medical faculty head) to quickly jump to the information most relevant to them. Key interactions include an interactive radar chart for a quick visual summary of skills and a filterable list for the extensive training section, preventing information overload and demonstrating organizational skills. This user-centric design prioritizes clarity, speed, and targeted information retrieval. -->
-    <!-- Visualization & Content Choices: 
-        - Professional Profile (Inform): A concise text block to establish expertise.
-        - Core Competencies (Organize): Card-based layout with icons (Unicode) for high-level grouping. Goal: Quick scanning. Method: HTML/Tailwind. Justification: Visually separates key strengths.
-        - Skills Radar Chart (Compare/Inform): Visualizes proficiency across key domains. Goal: Provide a memorable, data-driven summary. Method: Chart.js Canvas. Justification: More engaging than a list and showcases tech literacy.
-        - Experience Accordion (Organize): Collapsible sections for job details. Goal: Keep the UI clean. Method: HTML/JS. Justification: Reduces initial visual clutter.
-        - Filterable Training List (Organize/Explore): Buttons filter a long list of courses. Goal: Manage large dataset and empower user choice. Method: JS data attributes and class toggling. Justification: Turns an overwhelming list into an interactive discovery tool.
-        - Contributions Timeline (Change/Inform): Vertical timeline for publications/talks. Goal: Show career progression and community engagement. Method: HTML/Tailwind. Justification: More dynamic and visually appealing than a simple list. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Lato', sans-serif;
-            background-color: #F8F7F4;
-            color: #3D405B;
+            font-family: 'Inter', sans-serif;
         }
-        .nav-link {
-            transition: color 0.3s, border-bottom-color 0.3s;
-            border-bottom: 2px solid transparent;
-        }
-        .nav-link:hover, .nav-link.active {
-            color: #D36A5D;
-            border-bottom-color: #D36A5D;
-        }
-        .filter-btn {
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .filter-btn.active {
-            background-color: #3D405B !important;
-            color: #FFFFFF !important;
-        }
-        .chart-container {
+        /* Custom styles for the timeline */
+        .timeline-item {
             position: relative;
-            margin: auto;
-            height: 50vh;
-            max-height: 450px;
-            width: 100%;
-            max-width: 450px;
+            padding-left: 2.5rem;
+            padding-bottom: 2rem;
+            border-left: 2px solid #e5e7eb;
         }
-        .timeline-item::before {
-            content: '';
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+            padding-bottom: 0;
+        }
+        .timeline-dot {
             position: absolute;
-            left: -2.375rem;
-            top: 0;
-            width: 1.25rem;
-            height: 1.25rem;
-            border-radius: 50%;
-            background-color: #F8F7F4;
-            border: 4px solid #81B29A;
+            left: -0.5rem;
+            top: 0.125rem;
+            height: 1rem;
+            width: 1rem;
+            background-color: #3b82f6;
+            border-radius: 9999px;
+            border: 2px solid #f9fafb; /* Match body background */
+        }
+        /* Styles for scroll animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="bg-gray-50 text-gray-800">
 
     <!-- Header & Navigation -->
-    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="text-xl font-bold text-gray-800">M.C. Castañeda López</div>
-            <div class="hidden md:flex space-x-6">
-                <a href="#inicio" class="nav-link">Inicio</a>
-                <a href="#competencias" class="nav-link">Competencias</a>
-                <a href="#experiencia" class="nav-link">Experiencia</a>
-                <a href="#habilidades" class="nav-link">Habilidades</a>
-                <a href="#formacion" class="nav-link">Formación</a>
-                <a href="#contribuciones" class="nav-link">Contribuciones</a>
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-lg font-bold text-blue-600">
+                <a href="#">M.T.I. Consuelo Castañeda Lopez</a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden p-2">
-                <span class="text-3xl">☰</span>
-            </button>
+            <div class="hidden md:flex space-x-8 text-gray-600">
+                <a href="#experiencia" class="hover:text-blue-600 transition-colors">Experiencia</a>
+                <a href="#publicaciones" class="hover:text-blue-600 transition-colors">Publicaciones</a>
+                <a href="#competencias" class="hover:text-blue-600 transition-colors">Competencias</a>
+                <a href="#contacto" class="hover:text-blue-600 transition-colors">Contacto</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-gray-600 hover:text-blue-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-white">
-            <a href="#inicio" class="block py-2 px-6 text-center nav-link">Inicio</a>
-            <a href="#competencias" class="block py-2 px-6 text-center nav-link">Competencias</a>
-            <a href="#experiencia" class="block py-2 px-6 text-center nav-link">Experiencia</a>
-            <a href="#habilidades" class="block py-2 px-6 text-center nav-link">Habilidades</a>
-            <a href="#formacion" class="block py-2 px-6 text-center nav-link">Formación</a>
-            <a href="#contribuciones" class="block py-2 px-6 text-center nav-link">Contribuciones</a>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+            <a href="#experiencia" class="block py-2 px-6 text-sm text-gray-700 hover:bg-blue-50">Experiencia</a>
+            <a href="#publicaciones" class="block py-2 px-6 text-sm text-gray-700 hover:bg-blue-50">Publicaciones</a>
+            <a href="#competencias" class="block py-2 px-6 text-sm text-gray-700 hover:bg-blue-50">Competencias</a>
+            <a href="#contacto" class="block py-2 px-6 text-sm text-gray-700 hover:bg-blue-50">Contacto</a>
         </div>
     </header>
 
-    <main class="container mx-auto p-4 md:p-8">
+    <main class="container mx-auto px-6 py-12 md:py-20">
 
-        <!-- Section: Inicio -->
-        <section id="inicio" class="min-h-[80vh] flex items-center">
-            <div class="w-full text-center md:text-left">
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">María del Consuelo Castañeda López</h1>
-                <h2 class="text-2xl md:text-3xl font-light mt-2" style="color:#D36A5D;">Maestra en T.I. | Especialista en Alfabetización Informacional para Ciencias de la Salud</h2>
-                <p class="mt-6 max-w-3xl mx-auto md:mx-0 text-lg text-gray-600">
-                    Docente con más de 15 años de experiencia en la Facultad de Ciencias de la Salud (UJED), dedicada a potenciar la formación de profesionales de la salud a través de competencias digitales. Experta en búsqueda y gestión de evidencia científica, uso de bases de datos académicas, y la aplicación ética de la IA en investigación. Mi objetivo es formar médicos y profesionales críticos, capaces de navegar el ecosistema digital y fundamentar su práctica en información de la más alta calidad.
-                </p>
-                <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-4 text-sm">
-                    <span class="font-semibold">📧 consuelo.castaneda@ujed.mx</span>
-                    <span class="font-semibold">📞 (871) 112 35 37</span>
-                    <a href="https://www.linkedin.com/in/consuelocastaneda/" target="_blank" class="font-semibold hover:text-[#D36A5D] transition-colors">🔗 LinkedIn</a>
-                    <a href="https://www.researchgate.net/profile/Consuelo-Castaneda-Lopez" target="_blank" class="font-semibold hover:text-[#D36A5D] transition-colors">🔗 ResearchGate</a>
-                </div>
+        <!-- Hero Section -->
+        <section id="hero" class="text-center mb-20">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+                MARIA DEL CONSUELO <span class="text-blue-600">CASTAÑEDA LOPEZ</span>
+            </h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-600">Maestra en Tecnologías de la Información</p>
+            <div class="mt-8 flex justify-center items-center space-x-6">
+                <a href="https://www.linkedin.com/in/consuelocastaneda/" target="_blank" class="text-gray-500 hover:text-blue-700 transition-transform transform hover:scale-110">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="https://www.researchgate.net/profile/Consuelo-Castaneda-Lopez" target="_blank" class="text-gray-500 hover:text-blue-700 transition-transform transform hover:scale-110">
+                     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.333 19.111v-1.056c0-1.306-.4-2.417-1.194-3.333-.792-.917-1.889-1.375-3.292-1.375-1.389 0-2.486.458-3.292 1.375-.792.917-1.194 2.028-1.194 3.333v1.056h8.972zM12.25 10.125c0-1.042.361-1.931 1.083-2.667.722-.736 1.611-1.104 2.667-1.104s1.944.368 2.667 1.104c.722.736 1.083 1.625 1.083 2.667s-.361 1.931-1.083 2.667c-.722.736-1.611 1.104-2.667 1.104s-1.944-.368-2.667-1.104c-.722-.736-1.083-1.625-1.083-2.667zM12.25 21.333v-9.028h-1.056c-1.306 0-2.417-.4-3.333-1.194-.917-.792-1.375-1.889-1.375-3.292s.458-2.486 1.375-3.292c.917-.792 2.028-1.194 3.333-1.194h6.75c.583 0 1.056.472 1.056 1.056v14.417c0 .583-.472 1.056-1.056 1.056h-5.694z"/></svg>
+                </a>
             </div>
         </section>
 
-        <!-- Section: Competencias Clave -->
-        <section id="competencias" class="py-20">
-            <h2 class="text-3xl font-bold text-center mb-2">Competencias Clave</h2>
-            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Mi perfil se centra en la intersección de la tecnología, la pedagogía y la investigación, con un enfoque específico en las necesidades del sector salud.</p>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">
-                    <div class="text-5xl mb-4" style="color: #81B29A;">🔬</div>
-                    <h3 class="text-xl font-bold mb-2">Alfabetización Informacional en Salud</h3>
-                    <p class="text-gray-600">Búsqueda sistemática de evidencia (Metodología PICO), evaluación crítica de fuentes y gestión de referencias para una práctica basada en evidencia.</p>
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">
-                    <div class="text-5xl mb-4" style="color: #81B29A;">👩‍🏫</div>
-                    <h3 class="text-xl font-bold mb-2">Tecnologías para la Educación</h3>
-                    <p class="text-gray-600">Diseño instruccional para entornos virtuales, creación de cursos en línea (Estándar EC0366) y manejo de plataformas como Google Workspace y aulas virtuales.</p>
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">
-                    <div class="text-5xl mb-4" style="color: #81B29A;">🤖</div>
-                    <h3 class="text-xl font-bold mb-2">Inteligencia Artificial y Datos</h3>
-                    <p class="text-gray-600">Aplicación ética de IA generativa en investigación, herramientas de IA para la productividad y análisis de datos para la toma de decisiones informada.</p>
-                </div>
-            </div>
+        <!-- Professional Summary -->
+        <section id="resumen" class="mb-20 max-w-4xl mx-auto fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-8">Resumen Profesional</h2>
+            <p class="text-center text-lg text-gray-700 leading-relaxed">
+                Docente y Maestra en Tecnologías de la Información con más de 15 años de experiencia en la Facultad de Ciencias de la Salud (UJED). Mi especialidad es potenciar la formación de profesionales de la salud a través del desarrollo de competencias digitales e informacionales. Experta en la búsqueda y gestión de evidencia científica, uso de bases de datos académicas, manejo de gestores bibliográficos y la aplicación ética de la inteligencia artificial en la investigación. Mi objetivo es formar médicos y profesionales críticos, capaces de navegar el ecosistema digital y fundamentar su práctica en información de la más alta calidad.
+            </p>
         </section>
 
-        <!-- Section: Experiencia -->
-        <section id="experiencia" class="py-20 bg-white rounded-lg shadow-lg">
-             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-12">Experiencia Docente y Profesional</h2>
-                <div class="max-w-4xl mx-auto">
-                    <div class="experience-item border-b pb-4 mb-4">
-                        <h3 class="text-xl font-bold cursor-pointer flex justify-between items-center">
-                            <span>Docente, Gestión de la Información | FACSA, UJED</span>
-                            <span class="text-sm font-normal text-gray-500">2021 - Actualidad</span>
-                        </h3>
-                        <div class="experience-details mt-2 text-gray-600 space-y-2">
-                            <p>Diseño e imparto el programa formativo para desarrollar habilidades de búsqueda sistemática y evaluación crítica de literatura científica en estudiantes de ciencias de la salud.</p>
-                            <p>Capacito en el uso avanzado de bases de datos como <strong>Elsevier (Scopus, ScienceDirect), PubMed</strong> y bibliotecas digitales.</p>
-                            <p>Fomento el uso de gestores bibliográficos como <strong>Mendeley</strong> para la organización de la investigación y la correcta citación.</p>
-                            <p>Integro el uso ético y efectivo de la <strong>Inteligencia Artificial generativa</strong> como herramienta de apoyo en la investigación académica.</p>
-                        </div>
-                    </div>
-                    <div class="experience-item border-b pb-4 mb-4">
-                        <h3 class="text-xl font-bold cursor-pointer flex justify-between items-center">
-                            <span>Tutoría y Colaboración en Investigación | FACSA, UJED</span>
-                             <span class="text-sm font-normal text-gray-500">2023 - Actualidad</span>
-                        </h3>
-                        <div class="experience-details mt-2 text-gray-600 space-y-2 hidden">
-                             <p><strong>Tutora académica</strong> de 5 estudiantes de la Licenciatura en Psicología, brindando seguimiento y orientación para su desarrollo profesional y personal.</p>
-                             <p>Apoyo al <strong>Departamento de Planeación Estratégica</strong> en la realización de proyectos de investigación educativa para la mejora continua de los programas académicos.</p>
-                        </div>
-                    </div>
-                     <div class="experience-item border-b pb-4 mb-4">
-                        <h3 class="text-xl font-bold cursor-pointer flex justify-between items-center">
-                            <span>Responsable de Sala de Informática | FACSA, UJED</span>
-                             <span class="text-sm font-normal text-gray-500">2009 - Actualidad</span>
-                        </h3>
-                        <div class="experience-details mt-2 text-gray-600 space-y-2 hidden">
-                             <p>Administro la infraestructura tecnológica y oriento a cientos de estudiantes y docentes en el uso de recursos digitales y bases de datos académicas.</p>
-                             <p>Facilito la gestión de referencias digitales y ofrezco soporte en procedimientos académicos y tecnológicos de la facultad.</p>
-                        </div>
-                    </div>
-                     <div class="experience-item">
-                        <h3 class="text-xl font-bold cursor-pointer flex justify-between items-center">
-                            <span>Instructora de Talleres | FACSA, UJED</span>
-                            <span class="text-sm font-normal text-gray-500">2022 - Presente</span>
-                        </h3>
-                        <div class="experience-details mt-2 text-gray-600 space-y-2 hidden">
-                             <p>Impartí el taller "Herramientas Digitales en la Nube" para personal docente y administrativo, mejorando la productividad y colaboración mediante <strong>Google Workspace</strong>.</p>
-                             <p>He sido instructora del taller "Introducción a las revisiones sistemáticas de literatura", una competencia clave para la investigación médica actual.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: Habilidades -->
-        <section id="habilidades" class="py-20">
-            <h2 class="text-3xl font-bold text-center mb-2">Visualización de Habilidades</h2>
-            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Este gráfico interactivo representa un balance de mis competencias. Cada eje muestra un área de especialización, demostrando un perfil integral y adaptado a las exigencias de la educación superior moderna en salud.</p>
-            <div class="chart-container">
-                <canvas id="skillsChart"></canvas>
-            </div>
-        </section>
-
-        <!-- Section: Formación -->
-        <section id="formacion" class="py-20 bg-white rounded-lg shadow-lg">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-2">Formación Continua Relevante</h2>
-                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">Comprometida con el aprendizaje permanente, mi formación se enfoca en áreas cruciales para la docencia e investigación en salud. Usa los filtros para explorar los cursos por área de interés.</p>
-                <div class="flex flex-wrap justify-center gap-2 mb-8">
-                    <button class="filter-btn active bg-gray-200 text-gray-700 py-2 px-4 rounded-full" data-filter="all">Todos</button>
-                    <button class="filter-btn bg-gray-200 text-gray-700 py-2 px-4 rounded-full" data-filter="salud">Salud y Búsqueda Científica</button>
-                    <button class="filter-btn bg-gray-200 text-gray-700 py-2 px-4 rounded-full" data-filter="docencia">Docencia y Pedagogía</button>
-                    <button class="filter-btn bg-gray-200 text-gray-700 py-2 px-4 rounded-full" data-filter="ia">Tecnología e IA</button>
-                </div>
-                <ul id="courses-list" class="space-y-3 max-w-4xl mx-auto">
-                    <li class="course-item p-3 rounded-md bg-stone-100" data-category="salud"><strong>Introducción a las Revisiones Sistemáticas</strong> | PAHO (2024)</li>
-                    <li class="course-item p-3 rounded-md bg-stone-100" data-category="salud"><strong>Introducción a la Epidemiología</strong> | PAHO (2025)</li>
-                    <li class="course-item p-3 rounded-md bg-stone-100" data-category="salud"><strong>Ciencia Abierta: de la recomendación a la acción</strong> | UNESCO (2024)</li>
-                    <li class="course-item p-3 rounded-md bg-stone-100" data-category="salud"><strong>Transformación Digital del Sector Salud</strong> | PAHO (2024)</li>
-                    <li class="course-item p-3 rounded-md bg-stone-100" data-category="salud"><strong>Múltiples talleres y cursos</strong> | Elsevier sobre Scopus, ScienceDirect, Mendeley y Metodología PICO (2021-2023)</li>
-                    <li class="course-item p-3 rounded-md bg-stone-100" data-category="docencia"><strong>Desarrollo de cursos de formación en línea (EC0366)</strong> | SEP-CONOCER (2024)</li>
-                    <li class="course-item p-3 rounded-md bg-stone-100" data-category="docencia"><strong>Diplomado en Actualización y Desarrollo de Competencias Docentes</strong> | UJED (2025)</li>
-                    <li class="course-item p-3 rounded-md bg-stone-100" data-category="docencia"><strong>Diplomado Rutas en Investigación Cualitativa</strong> | UJED (2024)</li>
-                    <li class="course-item p-3 rounded-md bg-stone-100" data-category="docencia"><strong>Diplomado Innovación en la Enseñanza</strong> | Harvard Business Publishing (2024)</li>
-                    <li class="course-item p-3 rounded-md bg-stone-100" data-category="ia"><strong>Inteligencia Artificial</strong> | México X (2024)</li>
-                    <li class="course-item p-3 rounded-md bg-stone-100" data-category="ia"><strong>Introducción a Python, POO, interfaces gráficas</strong> | UNAM (2022)</li>
-                    <li class="course-item p-3 rounded-md bg-stone-100" data-category="ia"><strong>Chat GPT</strong> | UJED (2024)</li>
-                    <li class="course-item p-3 rounded-md bg-stone-100" data-category="ia"><strong>Inteligencia artificial para el trabajo</strong> | Platzi (2023)</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Section: Contribuciones -->
-        <section id="contribuciones" class="py-20">
-            <h2 class="text-3xl font-bold text-center mb-12">Publicaciones y Contribuciones a la Comunidad</h2>
+        <!-- Experience Section -->
+        <section id="experiencia" class="mb-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-12">Experiencia Docente y Profesional</h2>
             <div class="max-w-3xl mx-auto">
-                <div class="relative border-l-2 border-gray-200 pl-16">
-                    <div class="timeline-item mb-12">
-                        <h4 class="font-bold text-lg" style="color:#81B29A;">Coautora de Artículo en Libro</h4>
-                        <p class="text-sm text-gray-500 mb-1">AMFEM (Asociación Mexicana de Facultades y Escuelas de Medicina, A.C.) - 2024</p>
-                        <p class="text-gray-600">Autora del artículo <strong>"Modalidad híbrida y simulación médica como estrategia educativa interinstitucional. Una experiencia académica innovadora"</strong>, publicado en el libro <i>Innovación de la Educación Médica en México 2023-2024</i>.</p>
-                    </div>
-                    <div class="timeline-item mb-12">
-                        <h4 class="font-bold text-lg" style="color:#81B29A;">Instructora de Taller</h4>
-                        <p class="text-sm text-gray-500 mb-1">Congreso Internacional COINCIDES, FACSA (Nov. 2024)</p>
-                        <p class="text-gray-600">"Introducción a las revisiones sistemáticas de literatura".</p>
-                    </div>
-                    <div class="timeline-item mb-12">
-                        <h4 class="font-bold text-lg" style="color:#81B29A;">Ponente</h4>
-                        <p class="text-sm text-gray-500 mb-1">Facultad de Geofísica, UNAM (Ago. 2023)</p>
-                        <p class="text-gray-600">"Cómo sobrevivir a las Fake News".</p>
-                    </div>
-                     <div class="timeline-item mb-12">
-                        <h4 class="font-bold text-lg" style="color:#81B29A;">Voluntariado y Liderazgo</h4>
-                        <p class="text-sm text-gray-500 mb-1">TechnoLatinas (2020 - Actualidad)</p>
-                        <p class="text-gray-600">Desarrollo de habilidades de liderazgo, comunicación y adaptabilidad como moderadora, anfitriona e invitada en eventos de tecnología.</p>
-                    </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="text-sm text-gray-500">Agosto 2021 – Actualidad</p>
+                    <h3 class="text-xl font-bold mt-1">Docente, Unidad de Aprendizaje de Gestión de la Información</h3>
+                    <p class="text-md text-gray-600 font-medium mb-3">Facultad de Ciencias de la Salud, UJED</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Desarrollo de competencias en búsqueda sistemática de información (PubMed, CIE, MeSH) y uso de gestores bibliográficos (Mendeley).</li>
+                        <li>Fomento del pensamiento crítico y la ciudadanía digital, abordando temas como fake news y el uso ético de la IA.</li>
+                        <li>Implementación de herramientas de trabajo colaborativo en línea.</li>
+                        <li>Tutoría y acompañamiento académico a estudiantes de Psicología.</li>
+                    </ul>
                 </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="text-sm text-gray-500">Marzo 2009 – Actualidad</p>
+                    <h3 class="text-xl font-bold mt-1">Responsable de Sala de Informática</h3>
+                    <p class="text-md text-gray-600 font-medium mb-3">Facultad de Ciencias de la Salud, UJED</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Administración y mantenimiento de 34 equipos de cómputo.</li>
+                        <li>Asesoría especializada y soporte técnico en software y plataformas académicas.</li>
+                        <li>Inducción a estudiantes de nuevo ingreso en recursos tecnológicos.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="text-sm text-gray-500">Mayo 2022 – Junio 2022</p>
+                    <h3 class="text-xl font-bold mt-1">Instructora de Taller: Herramientas Digitales en la Nube</h3>
+                    <p class="text-md text-gray-600 font-medium mb-3">Facultad de Ciencias de la Salud, UJED</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Diseño e impartición de capacitación sobre Google Workspace para personal docente y administrativo.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Publications & Awards -->
+        <section id="publicaciones" class="mb-20 bg-white rounded-xl shadow-lg p-8 md:p-12 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-12">Producción Académica y Reconocimientos</h2>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="bg-blue-50 p-6 rounded-lg transition-transform transform hover:-translate-y-1">
+                    <h3 class="font-bold text-lg text-blue-800 mb-2">Publicación Destacada</h3>
+                    <p class="text-gray-700">Coautora del artículo <strong class="font-semibold">"Modalidad híbrida y simulación médica como estrategia educativa interinstitucional..."</strong>, publicado en el libro Innovación de la Educación Médica en México 2023-2024 de la AMFEM.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg transition-transform transform hover:-translate-y-1">
+                    <h3 class="font-bold text-lg text-blue-800 mb-2">Premio</h3>
+                    <p class="text-gray-700"><strong class="font-semibold">3er Lugar en Concurso de Carteles</strong> (modalidad divulgación) en el Cuarto Coloquio Universitario de la UJED (2024).</p>
+                </div>
+                <div class="md:col-span-2 bg-blue-50 p-6 rounded-lg transition-transform transform hover:-translate-y-1">
+                     <h3 class="font-bold text-lg text-blue-800 mb-2">Ponente</h3>
+                     <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Instructora del Taller <strong class="font-semibold">"Introducción a las revisiones sistemáticas de literatura"</strong>, Congreso Internacional COINCIDES (Nov. 2024).</li>
+                        <li>Ponente en <strong class="font-semibold">"Cómo sobrevivir a las Fake News"</strong>, invitada por la Facultad de Geofísica de la UNAM (Ago. 2023).</li>
+                     </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competencies Section -->
+        <section id="competencias" class="mb-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-12">Competencias y Áreas de Especialización</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Competency Cards -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all">
+                    <h3 class="font-bold text-lg mb-2">Tecnologías para la Investigación</h3>
+                    <p class="text-gray-600">Experta en bases de datos académicas, Mendeley, y metodologías de búsqueda sistemática (PICO).</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all">
+                    <h3 class="font-bold text-lg mb-2">Pedagogía Digital</h3>
+                    <p class="text-gray-600">Diseño de cursos en línea, aprendizaje basado en proyectos, aula invertida, y evaluación del aprendizaje.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all">
+                    <h3 class="font-bold text-lg mb-2">Inteligencia Artificial Aplicada</h3>
+                    <p class="text-gray-600">Uso y ética de IA generativa (ChatGPT), análisis de datos, y desarrollo de contenidos con IA.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all">
+                    <h3 class="font-bold text-lg mb-2">Gestión de Información y Datos</h3>
+                    <p class="text-gray-600">Ciencia Abierta, repositorios de datos, alfabetización mediática e informacional (AMI).</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all">
+                    <h3 class="font-bold text-lg mb-2">Salud Digital</h3>
+                    <p class="text-gray-600">Principios de transformación digital del sector salud, epidemiología e informática médica (Cursos PAHO).</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all">
+                    <h3 class="font-bold text-lg mb-2">Comunicación y Liderazgo</h3>
+                    <p class="text-gray-600">Comunicación efectiva, técnicas de presentación, liderazgo de equipos y voluntariado.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Education & Certifications -->
+        <section id="formacion" class="grid md:grid-cols-2 gap-10 mb-20 fade-in-section">
+            <div>
+                 <h2 class="text-3xl font-bold text-center mb-8">Formación Académica</h2>
+                 <div class="space-y-6">
+                     <div class="bg-white p-6 rounded-lg shadow-sm">
+                         <h3 class="font-bold text-lg">Maestría en Tecnologías de la Información</h3>
+                         <p class="text-gray-600">Universidad Interamericana para el Desarrollo (UNID)</p>
+                         <p class="text-sm text-blue-600 font-medium mt-1">Obtención de grado con el promedio más alto de la generación (94/100).</p>
+                     </div>
+                      <div class="bg-white p-6 rounded-lg shadow-sm">
+                         <h3 class="font-bold text-lg">Licenciatura en Ingeniería en Sistemas Computacionales</h3>
+                         <p class="text-gray-600">Instituto Tecnológico Superior de Lerdo</p>
+                     </div>
+                 </div>
+            </div>
+             <div>
+                 <h2 class="text-3xl font-bold text-center mb-8">Certificaciones Clave</h2>
+                 <div class="space-y-4">
+                     <p class="bg-white p-4 rounded-lg shadow-sm font-medium text-gray-700">Desarrollo de Cursos de Formación en Línea (EC0366) | SEP-CONOCER</p>
+                     <p class="bg-white p-4 rounded-lg shadow-sm font-medium text-gray-700">Diplomado en Actualización y Desarrollo de Competencias Docentes | UJED</p>
+                     <p class="bg-white p-4 rounded-lg shadow-sm font-medium text-gray-700">Diplomado en Innovación en la Enseñanza | Harvard Business Publishing</p>
+                     <p class="bg-white p-4 rounded-lg shadow-sm font-medium text-gray-700">Diplomado en Rutas en Investigación Cualitativa | UJED</p>
+                 </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-gray-800 text-white text-center py-8">
-        <p>María del Consuelo Castañeda López</p>
-        <p class="text-sm text-gray-400">Gómez Palacio, Durango, México</p>
-        <div class="mt-4 flex justify-center gap-4">
-             <a href="mailto:consuelo.castaneda@ujed.mx" class="hover:text-[#81B29A]">Correo</a>
-             <a href="https://www.linkedin.com/in/consuelocastaneda/" target="_blank" class="hover:text-[#81B29A]">LinkedIn</a>
-             <a href="https://www.researchgate.net/profile/Consuelo-Castaneda-Lopez" target="_blank" class="hover:text-[#81B29A]">ResearchGate</a>
+    <!-- Footer -->
+    <footer id="contacto" class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-10 text-center">
+            <h2 class="text-2xl font-bold mb-4">Contacto</h2>
+            <p class="text-gray-300">Gómez Palacio, Durango, México</p>
+            <div class="mt-4 flex justify-center items-center space-x-2">
+                <a id="email-link" href="mailto:consuelo.castaneda@ujed.mx" class="text-blue-300 hover:text-blue-200 transition-colors">consuelo.castaneda@ujed.mx</a>
+                <button id="copy-email-btn" title="Copiar email" class="p-2 rounded-full hover:bg-gray-700 transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path></svg>
+                </button>
+            </div>
+            <p id="copy-notification" class="text-sm text-green-400 mt-2 hidden">¡Correo copiado al portapapeles!</p>
+            <p class="text-gray-300 mt-2">(871) 112 35 37</p>
+            <div class="mt-6 border-t border-gray-700 pt-6">
+                <p class="text-gray-400 text-sm">&copy; 2025 Maria del Consuelo Castañeda Lopez. Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Mobile Menu
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            document.querySelectorAll('#mobile-menu a').forEach(link => {
-                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-            });
+        // --- Mobile Menu ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
 
-            // Navigation scroll highlighting
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-            window.onscroll = () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 100) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').includes(current)) {
-                        link.classList.add('active');
-                    }
-                });
-            };
-
-            // Experience Accordion
-            const experienceItems = document.querySelectorAll('.experience-item h3');
-            experienceItems.forEach(header => {
-                header.addEventListener('click', () => {
-                    const details = header.nextElementSibling;
-                    const allDetails = document.querySelectorAll('.experience-details');
-                    
-                    const isHidden = details.classList.contains('hidden');
-                    allDetails.forEach(d => d.classList.add('hidden'));
-                    
-                    if(isHidden) {
-                       details.classList.remove('hidden');
-                    }
-                });
-            });
-
-            // Skills Chart
-            const ctx = document.getElementById('skillsChart').getContext('2d');
-            const skillsChart = new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: [
-                        'Alfabetización Informacional',
-                        'Docencia y Pedagogía',
-                        'Tecnologías Educativas',
-                        'Gestión de Investigación',
-                        'Comunicación y Liderazgo',
-                        'IA y Datos'
-                    ],
-                    datasets: [{
-                        label: 'Nivel de Competencia',
-                        data: [95, 95, 85, 95, 85, 85],
-                        backgroundColor: 'rgba(129, 178, 154, 0.2)',
-                        borderColor: 'rgba(129, 178, 154, 1)',
-                        pointBackgroundColor: 'rgba(129, 178, 154, 1)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(129, 178, 154, 1)'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        r: {
-                            angleLines: {
-                                color: 'rgba(61, 64, 91, 0.2)'
-                            },
-                            grid: {
-                                color: 'rgba(61, 64, 91, 0.2)'
-                            },
-                            pointLabels: {
-                                font: {
-                                    size: 12
-                                },
-                                color: '#3D405B'
-                            },
-                            ticks: {
-                                backdropColor: '#F8F7F4',
-                                color: '#3D405B'
-                            },
-                            min: 0,
-                            max: 100
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                           display: false
-                        }
-                    }
-                }
-            });
-
-            // Course Filter
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const courses = document.querySelectorAll('.course-item');
-
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const filter = button.dataset.filter;
-                    
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-
-                    courses.forEach(course => {
-                        if (filter === 'all' || course.dataset.category === filter) {
-                            course.style.display = 'block';
-                        } else {
-                            course.style.display = 'none';
-                        }
-                    });
-                });
+        // Close mobile menu when a link is clicked
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
             });
         });
+
+        // --- Animate on Scroll ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        });
+
+        const elementsToAnimate = document.querySelectorAll('.fade-in-section');
+        elementsToAnimate.forEach(el => observer.observe(el));
+
+        // --- Copy to Clipboard ---
+        const copyBtn = document.getElementById('copy-email-btn');
+        const notification = document.getElementById('copy-notification');
+        const emailLink = document.getElementById('email-link');
+
+        copyBtn.addEventListener('click', () => {
+            const email = emailLink.innerText;
+            
+            // Using a temporary textarea to copy text
+            const textArea = document.createElement('textarea');
+            textArea.value = email;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                // Use document.execCommand for broad browser support in iframes
+                document.execCommand('copy');
+                notification.classList.remove('hidden');
+                setTimeout(() => {
+                    notification.classList.add('hidden');
+                }, 2500);
+            } catch (err) {
+                console.error('No se pudo copiar el correo: ', err);
+                notification.innerText = "Error al copiar";
+                notification.classList.remove('hidden', 'text-green-400');
+                notification.classList.add('text-red-400');
+            }
+            
+            document.body.removeChild(textArea);
+        });
+
     </script>
-</body>
-</html>
 </body>
 </html>
