@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV | Maria del Consuelo Castañeda Lopez</title>
@@ -8,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -29,7 +31,7 @@
             top: 0.125rem;
             height: 1rem;
             width: 1rem;
-            background-color: #3b82f6;
+            background-color: #3b82f6; /* Azul más vibrante */
             border-radius: 9999px;
             border: 2px solid #f9fafb; /* Match body background */
         }
@@ -43,30 +45,35 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* Nueva paleta de colores para el theme */
+        .text-theme-primary { color: #3b82f6; } /* Azul principal */
+        .bg-theme-secondary { background-color: #bfdbfe; } /* Azul suave para fondos */
+        .text-theme-accent { color: #10b981; } /* Verde de acento */
+        .bg-card-hover:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Header & Navigation -->
     <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-lg font-bold text-blue-600">
-                <a href="#">M.T.I. Consuelo Castañeda Lopez</a>
+            <div class="text-lg font-bold text-theme-primary flex items-center">
+                <a href="#"><i class="fas fa-microchip mr-2"></i>M.T.I. Consuelo Castañeda Lopez</a>
             </div>
             <div class="hidden md:flex space-x-8 text-gray-600">
-                <a href="#experiencia" class="hover:text-blue-600 transition-colors">Experiencia</a>
-                <a href="#publicaciones" class="hover:text-blue-600 transition-colors">Publicaciones</a>
-                <a href="#competencias" class="hover:text-blue-600 transition-colors">Competencias</a>
-                <a href="#contacto" class="hover:text-blue-600 transition-colors">Contacto</a>
+                <a href="#experiencia" class="hover:text-theme-primary transition-colors">Experiencia</a>
+                <a href="#publicaciones" class="hover:text-theme-primary transition-colors">Publicaciones</a>
+                <a href="#competencias" class="hover:text-theme-primary transition-colors">Competencias</a>
+                <a href="#contacto" class="hover:text-theme-primary transition-colors">Contacto</a>
             </div>
-            <!-- Mobile Menu Button -->
             <div class="md:hidden">
-                <button id="mobile-menu-btn" class="text-gray-600 hover:text-blue-600 focus:outline-none">
+                <button id="mobile-menu-btn" class="text-gray-600 hover:text-theme-primary focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
             <a href="#experiencia" class="block py-2 px-6 text-sm text-gray-700 hover:bg-blue-50">Experiencia</a>
             <a href="#publicaciones" class="block py-2 px-6 text-sm text-gray-700 hover:bg-blue-50">Publicaciones</a>
@@ -77,33 +84,34 @@
 
     <main class="container mx-auto px-6 py-12 md:py-20">
 
-        <!-- Hero Section -->
         <section id="hero" class="text-center mb-20">
             <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
-                MARIA DEL CONSUELO<br> <span class="text-blue-600">CASTAÑEDA LOPEZ</span>
+                MARIA DEL CONSUELO<br> <span class="text-theme-primary">CASTAÑEDA LOPEZ</span>
             </h1>
             <p class="mt-4 text-xl md:text-2xl text-gray-600">Maestra en Tecnologías de la Información</p>
             <div class="mt-8 flex justify-center items-center space-x-6">
-                <a href="https://www.linkedin.com/in/consuelocastaneda/" target="_blank" class="text-gray-500 hover:text-blue-700 transition-transform transform hover:scale-110">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                <a href="https://www.linkedin.com/in/consuelocastaneda/" target="_blank" class="text-gray-500 hover:text-theme-primary transition-transform transform hover:scale-110">
+                    <i class="fab fa-linkedin fa-2x"></i>
                 </a>
-                <a href="https://www.researchgate.net/profile/Consuelo-Castaneda-Lopez" target="_blank" class="text-gray-500 hover:text-blue-700 transition-transform transform hover:scale-110">
-                     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.333 19.111v-1.056c0-1.306-.4-2.417-1.194-3.333-.792-.917-1.889-1.375-3.292-1.375-1.389 0-2.486.458-3.292 1.375-.792.917-1.194 2.028-1.194 3.333v1.056h8.972zM12.25 10.125c0-1.042.361-1.931 1.083-2.667.722-.736 1.611-1.104 2.667-1.104s1.944.368 2.667 1.104c.722.736 1.083 1.625 1.083 2.667s-.361 1.931-1.083 2.667c-.722.736-1.611 1.104-2.667 1.104s-1.944-.368-2.667-1.104c-.722-.736-1.083-1.625-1.083-2.667zM12.25 21.333v-9.028h-1.056c-1.306 0-2.417-.4-3.333-1.194-.917-.792-1.375-1.889-1.375-3.292s.458-2.486 1.375-3.292c.917-.792 2.028-1.194 3.333-1.194h6.75c.583 0 1.056.472 1.056 1.056v14.417c0 .583-.472 1.056-1.056 1.056h-5.694z"/></svg>
+                <a href="https://www.researchgate.net/profile/Consuelo-Castaneda-Lopez" target="_blank" class="text-gray-500 hover:text-theme-primary transition-transform transform hover:scale-110">
+                     <i class="fab fa-researchgate fa-2x"></i>
                 </a>
             </div>
         </section>
 
-        <!-- Professional Summary -->
         <section id="resumen" class="mb-20 max-w-4xl mx-auto fade-in-section">
-            <h2 class="text-3xl font-bold text-center mb-8">Resumen Profesional</h2>
+            <h2 class="text-3xl font-bold text-center mb-8 flex items-center justify-center">
+                <i class="fas fa-lightbulb text-theme-accent mr-3"></i>Resumen Profesional
+            </h2>
             <p class="text-center text-lg text-gray-700 leading-relaxed">
                 Docente y Maestra en Tecnologías de la Información con más de 15 años de experiencia en la Facultad de Ciencias de la Salud (UJED). Mi especialidad es potenciar la formación de profesionales de la salud a través del desarrollo de competencias digitales e informacionales. Experta en la búsqueda y gestión de evidencia científica, uso de bases de datos académicas, manejo de gestores bibliográficos y la aplicación ética de la inteligencia artificial en la investigación. Mi objetivo es formar médicos y profesionales críticos, capaces de navegar el ecosistema digital y fundamentar su práctica en información de la más alta calidad.
             </p>
         </section>
 
-        <!-- Experience Section -->
         <section id="experiencia" class="mb-20 fade-in-section">
-            <h2 class="text-3xl font-bold text-center mb-12">Experiencia Docente y Profesional</h2>
+            <h2 class="text-3xl font-bold text-center mb-12 flex items-center justify-center">
+                <i class="fas fa-briefcase text-theme-accent mr-3"></i>Experiencia Docente y Profesional
+            </h2>
             <div class="max-w-3xl mx-auto">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
@@ -111,10 +119,10 @@
                     <h3 class="text-xl font-bold mt-1">Docente, Unidad de Aprendizaje de Gestión de la Información</h3>
                     <p class="text-md text-gray-600 font-medium mb-3">Facultad de Ciencias de la Salud, UJED</p>
                     <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Desarrollo de competencias en búsqueda sistemática de información (PubMed, CIE, MeSH) y uso de gestores bibliográficos (Mendeley).</li>
-                        <li>Fomento del pensamiento crítico y la ciudadanía digital, abordando temas como fake news y el uso ético de la IA.</li>
-                        <li>Implementación de herramientas de trabajo colaborativo en línea.</li>
-                        <li>Tutoría y acompañamiento académico a estudiantes de Psicología.</li>
+                        <li><i class="fas fa-search-plus mr-2 text-theme-primary"></i>Desarrollo de competencias en búsqueda sistemática de información (PubMed, CIE, MeSH) y uso de gestores bibliográficos (Mendeley).</li>
+                        <li><i class="fas fa-brain mr-2 text-theme-primary"></i>Fomento del pensamiento crítico y la ciudadanía digital, abordando temas como fake news y el uso ético de la IA.</li>
+                        <li><i class="fas fa-users-cog mr-2 text-theme-primary"></i>Implementación de herramientas de trabajo colaborativo en línea.</li>
+                        <li><i class="fas fa-user-graduate mr-2 text-theme-primary"></i>Tutoría y acompañamiento académico a estudiantes de Psicología.</li>
                     </ul>
                 </div>
                 <div class="timeline-item">
@@ -123,9 +131,9 @@
                     <h3 class="text-xl font-bold mt-1">Responsable de Sala de Informática</h3>
                     <p class="text-md text-gray-600 font-medium mb-3">Facultad de Ciencias de la Salud, UJED</p>
                     <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Administración y mantenimiento de 34 equipos de cómputo.</li>
-                        <li>Asesoría especializada y soporte técnico en software y plataformas académicas.</li>
-                        <li>Inducción a estudiantes de nuevo ingreso en recursos tecnológicos.</li>
+                        <li><i class="fas fa-desktop mr-2 text-theme-primary"></i>Administración y mantenimiento de 34 equipos de cómputo.</li>
+                        <li><i class="fas fa-headset mr-2 text-theme-primary"></i>Asesoría especializada y soporte técnico en software y plataformas académicas.</li>
+                        <li><i class="fas fa-laptop-code mr-2 text-theme-primary"></i>Inducción a estudiantes de nuevo ingreso en recursos tecnológicos.</li>
                     </ul>
                 </div>
                 <div class="timeline-item">
@@ -134,26 +142,33 @@
                     <h3 class="text-xl font-bold mt-1">Instructora de Taller: Herramientas Digitales en la Nube</h3>
                     <p class="text-md text-gray-600 font-medium mb-3">Facultad de Ciencias de la Salud, UJED</p>
                     <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Diseño e impartición de capacitación sobre Google Workspace para personal docente y administrativo.</li>
+                        <li><i class="fas fa-cloud-upload-alt mr-2 text-theme-primary"></i>Diseño e impartición de capacitación sobre Google Workspace para personal docente y administrativo.</li>
                     </ul>
                 </div>
             </div>
         </section>
         
-        <!-- Publications & Awards -->
-        <section id="publicaciones" class="mb-20 bg-white rounded-xl shadow-lg p-8 md:p-12 fade-in-section">
-            <h2 class="text-3xl font-bold text-center mb-12">Producción Académica y Reconocimientos</h2>
+        <section id="publicaciones" class="mb-20 bg-theme-secondary rounded-xl shadow-lg p-8 md:p-12 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-12 flex items-center justify-center">
+                <i class="fas fa-award text-theme-accent mr-3"></i>Producción Académica y Reconocimientos
+            </h2>
             <div class="grid md:grid-cols-2 gap-10">
-                <div class="bg-blue-50 p-6 rounded-lg transition-transform transform hover:-translate-y-1">
-                    <h3 class="font-bold text-lg text-blue-800 mb-2">Publicación Destacada</h3>
+                <div class="bg-white p-6 rounded-lg transition-transform transform hover:-translate-y-1 bg-card-hover">
+                    <h3 class="font-bold text-lg text-theme-primary mb-2 flex items-center">
+                        <i class="fas fa-book-open mr-2 text-theme-accent"></i>Publicación Destacada
+                    </h3>
                     <p class="text-gray-700">Coautora del artículo <strong class="font-semibold">"Modalidad híbrida y simulación médica como estrategia educativa interinstitucional..."</strong>, publicado en el libro Innovación de la Educación Médica en México 2023-2024 de la AMFEM.</p>
                 </div>
-                <div class="bg-blue-50 p-6 rounded-lg transition-transform transform hover:-translate-y-1">
-                    <h3 class="font-bold text-lg text-blue-800 mb-2">Premio</h3>
+                <div class="bg-white p-6 rounded-lg transition-transform transform hover:-translate-y-1 bg-card-hover">
+                    <h3 class="font-bold text-lg text-theme-primary mb-2 flex items-center">
+                        <i class="fas fa-trophy mr-2 text-theme-accent"></i>Premio
+                    </h3>
                     <p class="text-gray-700"><strong class="font-semibold">3er Lugar en Concurso de Carteles</strong> (modalidad divulgación) en el Cuarto Coloquio Universitario de la UJED (2024).</p>
                 </div>
-                <div class="md:col-span-2 bg-blue-50 p-6 rounded-lg transition-transform transform hover:-translate-y-1">
-                     <h3 class="font-bold text-lg text-blue-800 mb-2">Ponente</h3>
+                <div class="md:col-span-2 bg-white p-6 rounded-lg transition-transform transform hover:-translate-y-1 bg-card-hover">
+                     <h3 class="font-bold text-lg text-theme-primary mb-2 flex items-center">
+                        <i class="fas fa-microphone-alt mr-2 text-theme-accent"></i>Ponente
+                     </h3>
                      <ul class="list-disc list-inside space-y-2 text-gray-700">
                         <li>Instructora del Taller <strong class="font-semibold">"Introducción a las revisiones sistemáticas de literatura"</strong>, Congreso Internacional COINCIDES (Nov. 2024).</li>
                         <li>Ponente en <strong class="font-semibold">"Cómo sobrevivir a las Fake News"</strong>, invitada por la Facultad de Geofísica de la UNAM (Ago. 2023).</li>
@@ -162,80 +177,96 @@
             </div>
         </section>
 
-        <!-- Competencies Section -->
         <section id="competencias" class="mb-20 fade-in-section">
-            <h2 class="text-3xl font-bold text-center mb-12">Competencias y Áreas de Especialización</h2>
+            <h2 class="text-3xl font-bold text-center mb-12 flex items-center justify-center">
+                <i class="fas fa-cogs text-theme-accent mr-3"></i>Competencias y Áreas de Especialización
+            </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Competency Cards -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all">
-                    <h3 class="font-bold text-lg mb-2">Tecnologías para la Investigación</h3>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all bg-card-hover">
+                    <h3 class="font-bold text-lg mb-2 flex items-center">
+                        <i class="fas fa-flask mr-2 text-theme-primary"></i>Tecnologías para la Investigación
+                    </h3>
                     <p class="text-gray-600">Experta en bases de datos académicas, Mendeley, y metodologías de búsqueda sistemática (PICO).</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all">
-                    <h3 class="font-bold text-lg mb-2">Pedagogía Digital</h3>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all bg-card-hover">
+                    <h3 class="font-bold text-lg mb-2 flex items-center">
+                        <i class="fas fa-chalkboard-teacher mr-2 text-theme-primary"></i>Pedagogía Digital
+                    </h3>
                     <p class="text-gray-600">Diseño de cursos en línea, aprendizaje basado en proyectos, aula invertida, y evaluación del aprendizaje.</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all">
-                    <h3 class="font-bold text-lg mb-2">Inteligencia Artificial Aplicada</h3>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all bg-card-hover">
+                    <h3 class="font-bold text-lg mb-2 flex items-center">
+                        <i class="fas fa-robot mr-2 text-theme-primary"></i>Inteligencia Artificial Aplicada
+                    </h3>
                     <p class="text-gray-600">Uso y ética de IA generativa (ChatGPT), análisis de datos, y desarrollo de contenidos con IA.</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all">
-                    <h3 class="font-bold text-lg mb-2">Gestión de Información y Datos</h3>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all bg-card-hover">
+                    <h3 class="font-bold text-lg mb-2 flex items-center">
+                        <i class="fas fa-database mr-2 text-theme-primary"></i>Gestión de Información y Datos
+                    </h3>
                     <p class="text-gray-600">Ciencia Abierta, repositorios de datos, alfabetización mediática e informacional (AMI).</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all">
-                    <h3 class="font-bold text-lg mb-2">Salud Digital</h3>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all bg-card-hover">
+                    <h3 class="font-bold text-lg mb-2 flex items-center">
+                        <i class="fas fa-heartbeat mr-2 text-theme-primary"></i>Salud Digital
+                    </h3>
                     <p class="text-gray-600">Principios de transformación digital del sector salud, epidemiología e informática médica (Cursos PAHO).</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all">
-                    <h3 class="font-bold text-lg mb-2">Comunicación y Liderazgo</h3>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all bg-card-hover">
+                    <h3 class="font-bold text-lg mb-2 flex items-center">
+                        <i class="fas fa-comments mr-2 text-theme-primary"></i>Comunicación y Liderazgo
+                    </h3>
                     <p class="text-gray-600">Comunicación efectiva, técnicas de presentación, liderazgo de equipos y voluntariado.</p>
                 </div>
             </div>
         </section>
         
-        <!-- Education & Certifications -->
         <section id="formacion" class="grid md:grid-cols-2 gap-10 mb-20 fade-in-section">
             <div>
-                 <h2 class="text-3xl font-bold text-center mb-8">Formación Académica</h2>
+                 <h2 class="text-3xl font-bold text-center mb-8 flex items-center justify-center">
+                    <i class="fas fa-graduation-cap text-theme-accent mr-3"></i>Formación Académica
+                 </h2>
                  <div class="space-y-6">
-                     <div class="bg-white p-6 rounded-lg shadow-sm">
+                     <div class="bg-white p-6 rounded-lg shadow-sm bg-card-hover">
                          <h3 class="font-bold text-lg">Maestría en Tecnologías de la Información</h3>
                          <p class="text-gray-600">Universidad Interamericana para el Desarrollo (UNID)</p>
-                         <p class="text-sm text-blue-600 font-medium mt-1">Obtención de grado con el promedio más alto de la generación (94/100).</p>
+                         <p class="text-sm text-theme-primary font-medium mt-1">Obtención de grado con el promedio más alto de la generación (94/100).</p>
                      </div>
-                      <div class="bg-white p-6 rounded-lg shadow-sm">
+                      <div class="bg-white p-6 rounded-lg shadow-sm bg-card-hover">
                          <h3 class="font-bold text-lg">Licenciatura en Ingeniería en Sistemas Computacionales</h3>
                          <p class="text-gray-600">Instituto Tecnológico Superior de Lerdo</p>
                      </div>
                  </div>
             </div>
              <div>
-                 <h2 class="text-3xl font-bold text-center mb-8">Certificaciones Clave</h2>
+                 <h2 class="text-3xl font-bold text-center mb-8 flex items-center justify-center">
+                    <i class="fas fa-certificate text-theme-accent mr-3"></i>Certificaciones Clave
+                 </h2>
                  <div class="space-y-4">
-                     <p class="bg-white p-4 rounded-lg shadow-sm font-medium text-gray-700">Desarrollo de Cursos de Formación en Línea (EC0366) | SEP-CONOCER</p>
-                     <p class="bg-white p-4 rounded-lg shadow-sm font-medium text-gray-700">Diplomado en Actualización y Desarrollo de Competencias Docentes | UJED</p>
-                     <p class="bg-white p-4 rounded-lg shadow-sm font-medium text-gray-700">Diplomado en Innovación en la Enseñanza | Harvard Business Publishing</p>
-                     <p class="bg-white p-4 rounded-lg shadow-sm font-medium text-gray-700">Diplomado en Rutas en Investigación Cualitativa | UJED</p>
+                     <p class="bg-white p-4 rounded-lg shadow-sm font-medium text-gray-700 bg-card-hover"><i class="fas fa-file-alt mr-2 text-theme-primary"></i>Desarrollo de Cursos de Formación en Línea (EC0366) | SEP-CONOCER</p>
+                     <p class="bg-white p-4 rounded-lg shadow-sm font-medium text-gray-700 bg-card-hover"><i class="fas fa-diploma mr-2 text-theme-primary"></i>Diplomado en Actualización y Desarrollo de Competencias Docentes | UJED</p>
+                     <p class="bg-white p-4 rounded-lg shadow-sm font-medium text-gray-700 bg-card-hover"><i class="fas fa-lightbulb mr-2 text-theme-primary"></i>Diplomado en Innovación en la Enseñanza | Harvard Business Publishing</p>
+                     <p class="bg-white p-4 rounded-lg shadow-sm font-medium text-gray-700 bg-card-hover"><i class="fas fa-chart-line mr-2 text-theme-primary"></i>Diplomado en Rutas en Investigación Cualitativa | UJED</p>
                  </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Footer -->
     <footer id="contacto" class="bg-gray-800 text-white">
         <div class="container mx-auto px-6 py-10 text-center">
             <h2 class="text-2xl font-bold mb-4">Contacto</h2>
-            <p class="text-gray-300">Gómez Palacio, Durango, México</p>
+            <p class="text-gray-300 flex items-center justify-center"><i class="fas fa-map-marker-alt mr-2"></i>Gómez Palacio, Durango, México</p>
             <div class="mt-4 flex justify-center items-center space-x-2">
-                <a id="email-link" href="mailto:consuelo.castaneda@ujed.mx" class="text-blue-300 hover:text-blue-200 transition-colors">consuelo.castaneda@ujed.mx</a>
+                <a id="email-link" href="mailto:consuelo.castaneda@ujed.mx" class="text-blue-300 hover:text-blue-200 transition-colors flex items-center">
+                    <i class="fas fa-envelope mr-2"></i>consuelo.castaneda@ujed.mx
+                </a>
                 <button id="copy-email-btn" title="Copiar email" class="p-2 rounded-full hover:bg-gray-700 transition-colors">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path></svg>
                 </button>
             </div>
             <p id="copy-notification" class="text-sm text-green-400 mt-2 hidden">¡Correo copiado al portapapeles!</p>
-            <p class="text-gray-300 mt-2">(871) 112 35 37</p>
+            <p class="text-gray-300 mt-2 flex items-center justify-center"><i class="fas fa-phone mr-2"></i>(871) 112 35 37</p>
             <div class="mt-6 border-t border-gray-700 pt-6">
                 <p class="text-gray-400 text-sm">&copy; 2025 Maria del Consuelo Castañeda Lopez. Todos los derechos reservados.</p>
             </div>
@@ -279,7 +310,7 @@
         const emailLink = document.getElementById('email-link');
 
         copyBtn.addEventListener('click', () => {
-            const email = emailLink.innerText;
+            const email = emailLink.innerText.replace(/[\s\S]*<i class="[\s\S]*?"><\/i>/, '').trim(); // Elimina el ícono del texto copiado
             
             // Using a temporary textarea to copy text
             const textArea = document.createElement('textarea');
@@ -303,8 +334,6 @@
             }
             
             document.body.removeChild(textArea);
-        });
-
     </script>
 </body>
 </html>
