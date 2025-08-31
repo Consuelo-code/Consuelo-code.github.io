@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorías para estudiantes de Psicología - Un Espacio para Crecer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .gradient-text {
+            /* Nueva paleta de colores: verde azulado (teal) */
+            background-image: linear-gradient(to right, #0d9488, #14b8a6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-teal-50 flex items-center justify-center min-h-screen p-4">
+
+    <div class="container mx-auto p-6 lg:p-12 space-y-8">
+
+        <!-- Sección de Bienvenida -->
+        <div class="card p-8 text-center">
+            <h1 class="text-4xl lg:text-5xl font-extrabold mb-4 gradient-text">¡Hola! Y bienvenidos a la aventura.</h1>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                ¡Felicidades por elegir la carrera de Psicología! Sabemos que el primer año es una etapa llena de nuevos desafíos, emociones y, claro, muchas preguntas. Pero no te preocupes, estoy aquí para acompañarte en este viaje. Mi nombre es **Consuelo Castañeda Lopez** y estoy aquí para ser tu **tutora**.
+            </p>
+        </div>
+
+        <!-- Sección de Mi Rol -->
+        <div class="card p-8">
+            <h2 class="text-2xl lg:text-3xl font-bold mb-4 text-gray-800">¿Qué significa ser tu tutora?</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Mi rol no es el de una profesora. No estoy aquí para darte clases, sino para **escucharte, apoyarte y guiarte**. Piénsalo como tener a una compañera de estudios más experimentada. Podemos hablar sobre cualquier cosa: desde cómo entender un tema complicado, hasta cómo organizar tu tiempo, manejar el estrés o simplemente platicar sobre cómo te sientes.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Aquí, no hay preguntas "tontas" ni problemas pequeños. Quiero que este sea un espacio seguro y de confianza, donde te sientas libre de ser tú.
+            </p>
+        </div>
+
+        <!-- Sección de Google Calendar -->
+        <div class="card p-8">
+            <h2 class="text-2xl lg:text-3xl font-bold mb-4 text-gray-800">¿Por qué usamos el Calendario de Google Workspace?</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Para que agendar una tutoría sea lo más fácil posible, he elegido esta herramienta. Sé que la vida de estudiante es ajetreada y no quiero que el proceso de "encontrarnos" sea un dolor de cabeza.
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 leading-relaxed">
+                <li>**Es súper práctico:** Puedes ver mis horarios disponibles en tiempo real y reservar el que mejor te quede, sin necesidad de intercambiar un montón de mensajes.</li>
+                <li>**Todo en un solo lugar:** Una vez que reservas, la cita se añade automáticamente a tu calendario y al mío. ¡Así no se nos olvida!</li>
+                <li>**Recordatorios automáticos:** El calendario te envía un pequeño recordatorio para que nunca llegues tarde.</li>
+            </ul>
+        </div>
+
+        <!-- Sección de Llamado a la Acción -->
+        <div class="card p-8 text-center">
+            <h2 class="text-2xl lg:text-3xl font-bold mb-4 text-gray-800">¡Hagamos esto juntos!</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Estoy muy emocionada de conocerte y de ser parte de tu camino. Recuerda, tu bienestar y tu crecimiento son lo más importante.
+            </p>
+
+            <!-- Google Calendar Appointment Scheduling begin -->
+            <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+            <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+            <script>
+            (function() {
+              var target = document.currentScript;
+              window.addEventListener('load', function() {
+                calendar.schedulingButton.load({
+                  url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ35avLPGKLe54ML3ieNNevNhV50lBSQAJaxY4irhbgclowVf7QuP8_eKaQyaDbeRPFOSnDnww-N?gv=true',
+                  color: '#039BE5',
+                  label: 'Programar una cita',
+                  target,
+                });
+              });
+            })();
+            </script>
+            <!-- end Google Calendar Appointment Scheduling -->
+
+        </div>
+
+    </div>
+
+</body>
+</html>
